@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - BOT_NAME=${BOT_NAME}
+      - MONGODB_STRING=mongodb://root:${MONGO_PASSWORD}@mongo:27017/?authMechanism=DEFAULT
+
+  mongo:
+    image: mongo:4.4.11-rc1
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes: 
+      - /data/db
