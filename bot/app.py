@@ -8,6 +8,7 @@ from telegram import Update, ForceReply, InlineKeyboardButton, InlineKeyboardMar
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler
 
 from db import DB
+from i1337 import *
 
 bot_token = os.getenv('BOT_TOKEN')
 bot_name = os.getenv('BOT_NAME')
@@ -66,8 +67,9 @@ def stop(update: Update, context: CallbackContext) -> None:
 def one_three_three_seven(context: CallbackContext):
     chats = database.get_chats()
     logger.info(f'1337 call in {len(chats)} chats')
+    t = get_text()
     for c in chats:
-        context.bot.send_message(chat_id=c, text='Хакерская минута')
+        context.bot.send_message(chat_id=c, text=t)
 
 
 def main() -> None:

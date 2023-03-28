@@ -9,7 +9,6 @@ RUN pip3 install -r requirements.txt
 
 COPY entry.sh entry.sh
 
-COPY bot/app.py app.py
-COPY bot/db.py db.py
+COPY bot .
 
 ENTRYPOINT /bin/bash entry.sh
